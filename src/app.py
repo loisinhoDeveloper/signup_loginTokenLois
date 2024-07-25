@@ -1,56 +1,65 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
+
+
+#Configurar Flask y JWT:
 import os
 from flask import Flask, request, jsonify, url_for, send_from_directory
 from flask_migrate import Migrate
 from flask_swagger import swagger
 from api.utils import APIException, generate_sitemap
-from api.models import db
+from api.models import db #inicialización de la base de datos
 from api.routes import api
-from api.admin import setup_admin
-from api.commands import setup_commands
+from api.admin import setup_admin #Funciones para configurar el administrador y comandos personalizados.
+from api.commands import setup_commands #Funciones para configurar el administrador y comandos personalizados.
+from flask_jwt_extended import JWTManager #Módulo para manejar tokens JWT.
 
 # from models import Person
 
 ENV = "development" if os.getenv("FLASK_DEBUG") == "1" else "production"
 static_file_dir = os.path.join(os.path.dirname(
     os.path.realpath(__file__)), '../public/')
-app = Flask(__name__)
+app = Flask(__name__) # Inicializa la aplicación Flask.
+
+
+# Configura la extensión Flask-JWT-Extended
+app.config["JWT_SECRET_KEY"] = "valdoviño"  # ¡Cambia las palabras "super-secret" por otra cosa! Define la clave secreta para JWT.
+jwt = JWTManager(app)
 app.url_map.strict_slashes = False
 
 # database condiguration
-db_url = os.getenv("DATABASE_URL")
+db_url = os.getenv("DATABASE_URL") #Obtiene la URL de la base de datos desde una variable de entorno.
 if db_url is not None:
-    app.config['SQLALCHEMY_DATABASE_URI'] = db_url.replace(
+    app.config['SQLALCHEMY_DATABASE_URI'] = db_url.replace( #Configura la URI de la base de datos
         "postgres://", "postgresql://")
 else:
     app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:////tmp/test.db"
 
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-MIGRATE = Migrate(app, db, compare_type=True)
-db.init_app(app)
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False #Desactiva las notificaciones de modificaciones.
+MIGRATE = Migrate(app, db, compare_type=True) #Configura las migraciones de la base de datos.
+db.init_app(app) #Inicializa la base de datos con la aplicación Flask.
 
-# add the admin
-setup_admin(app)
+# Configura el administrador de Flask.
+setup_admin(app) 
 
-# add the admin
+# Configura comandos personalizados
 setup_commands(app)
 
-# Add all endpoints form the API with a "api" prefix
+# Registra el blueprint de las rutas de la API.
 app.register_blueprint(api, url_prefix='/api')
 
 # Handle/serialize errors like a JSON object
 
 
-@app.errorhandler(APIException)
+@app.errorhandler(APIException) #Maneja excepciones personalizadas
 def handle_invalid_usage(error):
     return jsonify(error.to_dict()), error.status_code
 
 # generate sitemap with all your endpoints
 
 
-@app.route('/')
+@app.route('/') #Define la ruta principal.
 def sitemap():
     if ENV == "development":
         return generate_sitemap(app)
@@ -68,7 +77,7 @@ def serve_any_other_file(path):
     return response
 
 
-# this only runs if `$ python src/main.py` is executed
+# Inicia la aplicación en modo debug.
 if __name__ == '__main__':
     PORT = int(os.environ.get('PORT', 3001))
     app.run(host='0.0.0.0', port=PORT, debug=True)

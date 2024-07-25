@@ -1,19 +1,45 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
+import "../../styles/index.css";
 
 export const Navbar = () => {
-	return (
-		<nav className="navbar navbar-light bg-light">
-			<div className="container">
-				<Link to="/">
-					<span className="navbar-brand mb-0 h1">React Boilerplate</span>
-				</Link>
-				<div className="ml-auto">
-					<Link to="/demo">
-						<button className="btn btn-primary">Check the Context in action</button>
-					</Link>
-				</div>
-			</div>
-		</nav>
-	);
+    const { store, actions } = useContext(Context);
+
+    return (
+        <nav className="navbar mb-3">
+            <Link to="/" className="navbar-brand">
+                <img
+                    className="startWars"
+                    src="https://icons.iconarchive.com/icons/sensibleworld/starwars/512/Death-Star-icon.png"
+                    alt="Star Wars Icon"
+                />
+            </Link>
+            <div className="dropdown">
+                <button
+                    className="btn btn-secondary dropdown-toggle"
+                    type="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                >
+                    Iniciar sesión
+                </button>
+                <ul className="dropdown-menu dropdown-menu-end">
+                    <li>
+                        <Link to="/login" className="dropdown-item">
+                            Iniciar sesión
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/signup" className="dropdown-item">
+                            Registrarse
+                        </Link>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    );
 };
+
+
+//navbar-brand es una clase específica que se utiliza para identificar el elemento que contiene el logotipo o nombre de la aplicación en una barra de navegación

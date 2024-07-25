@@ -1,26 +1,30 @@
-import React, { useContext } from "react";
-import { Context } from "../store/appContext";
-import rigoImageUrl from "../../img/rigo-baby.jpg";
-import "../../styles/home.css";
+import React, { useState } from "react";
+import { Signup } from "../component/Signup";
+import { Link } from "react-router-dom";
+import Modal from "../component/Modal";
 
 export const Home = () => {
-	const { store, actions } = useContext(Context);
+    const [showModal, setShowModal] = useState(false);
 
-	return (
-		<div className="text-center mt-5">
-			<h1>Hello Rigo!!</h1>
-			<p>
-				<img src={rigoImageUrl} />
-			</p>
-			<div className="alert alert-info">
-				{store.message || "Loading message from the backend (make sure your python backend is running)..."}
-			</div>
-			<p>
-				This boilerplate comes with lots of documentation:{" "}
-				<a href="https://start.4geeksacademy.com/starters/react-flask">
-					Read documentation
-				</a>
-			</p>
-		</div>
-	);
+    const handleShow = () => setShowModal(true);
+    const handleClose = () => setShowModal(false);
+
+    return (
+        <div className="containerHome">
+            <button className="btnHomeRegistro btnPrimary" onClick={handleShow}>
+               Registrate
+            </button>
+
+            <Modal
+                show={showModal}
+                onClose={handleClose}
+                title="Bienvenidos"
+            >
+                <Signup />
+                <p>
+                    <Link to="/login">Inicia sesión</Link>
+                </p>
+            </Modal>
+        </div>
+    );
 };

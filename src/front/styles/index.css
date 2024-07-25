@@ -1,3 +1,206 @@
 /* 
     General Styles used on every website (Don't Repeat Yourself)
 */
+
+/* Estilos generales para todo el documento */
+body {
+    font-family: "Mona Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    line-height: 28px;
+    padding: 1px;
+    margin: 0px;
+    background-color: #E9F1FA;
+    font-size: 16px;
+    text-align: start;
+}
+.navbar {
+    /* Aplica un fondo degradado */
+    background-image: linear-gradient(to bottom, #00ABE4, #E9F1FA); /* Gradiente de arriba hacia abajo */
+    /* Fallback para navegadores que no soportan gradientes */
+    background-color: #8c4c0c; /* Color de fondo base */
+    /* Otros estilos */
+    padding: 10px;
+    margin: none;
+    font-size: 16px;
+}
+
+/* logo */
+.startWars {
+    width: 96px; /* Tamaño del ícono */
+    height: 37px; /* Tamaño del ícono */
+    cursor: pointer; /* Cambia el cursor al pasar por encima */
+    color: #31EC56; /* NO CAMBIA Cambia el color de la imagen del ícono a amarillo */
+}
+/* Estilos para el botón del dropdown */
+.dropdown .btn-secondary {
+    background-image: linear-gradient(to bottom, #00ABE4, #E9F1FA); /* Color de fondo base */
+    color: #2272FF; /* Color del texto */
+    padding: 10px 20px; /* Padding para dar espacio al contenido del botón */
+    border: none; /* Sin borde */
+    cursor: pointer; /* Cambia el cursor al pasar por encima */
+    transition: background-color 0.3s ease; /* Transición suave del color de fondo */
+}
+
+/* Cambia el color de fondo cuando el cursor pasa por encima del botón del dropdown */
+.dropdown .btn-secondary:hover {
+    background-color: #01257D; /* Color de fondo al pasar el cursor */
+    color: #2272FF; /* Color del texto */
+}
+
+/* Estilos para el dropdown-menu */
+.dropdown-menu {
+    background-image: linear-gradient(to bottom, #00ABE4, #E9F1FA); /* Fondo amarillo */
+    border: none; /* Sin borde */
+    right: 0; /* Ajusta la posición a la derecha según sea necesario */
+}
+
+/* Alinear el botón a la derecha dentro del dropdown-item */
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    padding-right: 1rem; /* Ajusta el espacio a la derecha según sea necesario */
+}
+
+
+.containerRegistro {
+   
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    background-color: #f4f4f4; /* Color de fondo general */
+}
+
+/* Estilo para la clase .form-container */
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+input-box {
+    margin-bottom: 15px; /* Margen inferior para separar los campos */
+    
+}
+.input-box input {
+    
+    border: none; /* Sin borde */
+    background-color: #E9F1FA; /* Fondo del campo */
+    color: #333; 
+    border-radius: 50px; /* Redondea las esquinas del campo */
+    margin-left: 10px; /* Margen izquierdo */
+    outline: none; /* Sin contorno al hacer clic */
+    text-align: center; /* Centra el texto */
+    padding: 0 15px; /* Espacio interior (padding) para mejor apariencia */
+}
+
+.btnHomeRegistro2 {
+    background-color: #00ABE4; /* Color de fondo para el botón primario */
+    color: #E9F1FA; /* Color del texto */
+    border: none; /* Sin borde */
+}
+
+/* Estilos generales para el modal */
+.modal {
+    position: fixed; /* Fijo en la pantalla */
+    top: 0; /* Alineación superior */
+    left: 0; /* Alineación izquierda */
+    width: 100%; /* Ancho completo */
+    height: 100%; /* Alto completo */
+    display: flex; /* Utiliza flexbox para centrar el modal */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    z-index: 1050; /* Asegura que esté por encima de otros contenidos */
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente oscuro */
+}
+
+/* Contenido del modal */
+.modal-dialog {
+    max-width: 500px; /* Ancho máximo del modal */
+    width: 100%; /* Ancho completo dentro del contenedor del modal */
+}
+
+.modal-content {
+    background-color: #f4f4f4; /* Fondo blanco del modal */
+    border-radius: 0.3rem; /* Bordes redondeados */
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); /* Sombra sutil */
+}
+
+/* Cabecera del modal */
+.modal-header {
+    background-image: linear-gradient(to bottom, #00ABE4, #E9F1FA); /* Color de fondo base */
+    display: flex; /* Flexbox para alinear el contenido */
+    justify-content: space-between; /* Espacio entre el título y el botón de cerrar */
+    padding: 1rem; /* Espaciado interno */
+    border-bottom: 1px solid #dee2e6; /* Línea inferior */
+}
+
+.modal-title {
+    margin: 0; /* Elimina el margen del título */
+    font-size: 1.25rem; /* Tamaño del texto */
+    font-weight: 500; /* Peso del texto */
+}
+
+/* Botón de cerrar del modal */
+.btnModalClose {
+    background: none; /* Sin fondo */
+    border: none; /* Sin borde */
+    font-size: 1.25rem; /* Tamaño del texto */
+    cursor: pointer; /* Cambia el cursor al pasar por encima */
+    color: #6c757d; /* Color del texto */
+}
+
+.btnModalClose:hover {
+    color: #000; /* Color del texto al pasar el cursor */
+}
+
+/* Cuerpo del modal */
+.modal-body {
+    padding: 1rem; /* Espaciado interno */
+    font-size: 1rem; /* Tamaño del texto */
+}
+
+/* Pie del modal */
+.modal-footer {
+    background-image: linear-gradient(to bottom, #E9F1FA, #00ABE4); /* Color de fondo base */
+    display: flex; /* Flexbox para alinear los botones */
+    justify-content: flex-end; /* Alinea los botones a la derecha */
+    padding: 1rem; /* Espaciado interno */
+    border-top: 1px solid #dee2e6; /* Línea superior */
+}
+
+/* Botones en el modal */
+.btnModal {
+    padding: 0.5rem 1rem; /* Espaciado interno del botón */
+    border-radius: 0.3rem; /* Bordes redondeados */
+    font-size: 1rem; /* Tamaño del texto */
+    cursor: pointer; /* Cambia el cursor al pasar por encima */
+    transition: background-color 0.3s ease; /* Transición del color de fondo */
+}
+
+/* Estilos específicos para el botón secundario del modal */
+.btnSecondary {
+    background-color: #00ABE4; /* Color de fondo para el botón primario */
+    color: #E9F1FA; /* Color del texto */
+    border: none; /* Sin borde */
+}
+
+.btnSecondary:hover {
+    background-color: #5a6268; /* Color de fondo al pasar el cursor */
+}
+
+/* Estilos específicos para el botón primario del registrate */
+.btnPrimary {
+    background-color: #00ABE4; /* Color de fondo para el botón primario */
+    color: #E9F1FA; /* Color del texto */
+    border: none; /* Sin borde */
+}
+
+.btnPrimary:hover {
+    background-color: #0056b3; /* Color de fondo al pasar el cursor */
+}
+
+/* Estilos para el contenedor del modal en Home */
+.containerHome {
+    padding: 1rem; /* Espaciado interno */
+}

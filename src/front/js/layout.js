@@ -1,34 +1,36 @@
-import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import ScrollToTop from "./component/scrollToTop";
-import { BackendURL } from "./component/backendURL";
+/* Configura las rutas en React y usa ScrollToTop para manejar el scroll.*/
 
-import { Home } from "./pages/home";
-import { Demo } from "./pages/demo";
-import { Single } from "./pages/single";
-import injectContext from "./store/appContext";
+import React from "react";
+import { BrowserRouter, Route, Routes } from 'react-router-dom';;/* importa componentes de React Router para manejar rutas.*/
+import injectContext from "./store/appContext"; 
+
+/*importar las distintas paginas y componentes */
+import { Home } from "./pages/home"; 
+import { Privada } from "./pages/PáginaPrivada";
+import ScrollToTop from "./component/scrollToTop"; /* importa componentes de React Router para manejar el scrollTo Top*/
 
 import { Navbar } from "./component/navbar";
+import { Signup } from "./component/Signup";
+import { Login } from "./component/Login";
 import { Footer } from "./component/footer";
 
-//create your first component
 const Layout = () => {
-    //the basename is used when your project is published in a subdirectory and not in the root of the domain
-    // you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
-    const basename = process.env.BASENAME || "";
+    const basename = process.env.BASENAME || ""; // Usa REACT_APP_ para variables de entorno en React
 
-    if(!process.env.BACKEND_URL || process.env.BACKEND_URL == "") return <BackendURL/ >;
-
+	//el nombre base se utiliza cuando su proyecto se publica en un subdirectorio y no en la raíz del dominio
+// puedes establecer el nombre base en el archivo .env ubicado en la raíz de este proyecto, por ejemplo: BASENAME=/reacthello-webapp/
+   
     return (
         <div>
             <BrowserRouter basename={basename}>
                 <ScrollToTop>
                     <Navbar />
                     <Routes>
-                        <Route element={<Home />} path="/" />
-                        <Route element={<Demo />} path="/demo" />
-                        <Route element={<Single />} path="/single/:theid" />
-                        <Route element={<h1>Not found!</h1>} />
+                        <Route path="/" element={<Home />} />
+                        <Route path="/signup" element={<Signup/>}/> {/*registro. */}
+                        <Route path="/login" element={<Login/>}/> {/*loguearse */}
+                        <Route path="/privada" element={<Privada/>} /> {/*info privada al loguearse*/}
+                        <Route path="*" element={<h1>Not found!</h1>} />
                     </Routes>
                     <Footer />
                 </ScrollToTop>
